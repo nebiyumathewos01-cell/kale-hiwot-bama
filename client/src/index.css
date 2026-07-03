@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-900 text-gray-100 font-sans;
+    scrollbar-width: thin;
+    scrollbar-color: #D4AF37 #1a1a24;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1a1a24; }
+  ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
+
+  .font-amharic { font-family: 'Noto Sans Ethiopic', sans-serif; }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-600 border border-gold-500/20 rounded-2xl backdrop-blur-sm;
+    background: rgba(26, 26, 36, 0.8);
+  }
+  .gold-text {
+    background: linear-gradient(135deg, #D4AF37, #f5d76e, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gold-border {
+    @apply border border-gold-500/30;
+  }
+  .btn-gold {
+    @apply bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold px-6 py-2.5 rounded-xl
+           transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/30
+           active:scale-95;
+  }
+  .btn-outline-gold {
+    @apply border border-gold-500/50 text-gold-400 hover:bg-gold-500/10 px-6 py-2.5 rounded-xl
+           transition-all duration-300;
+  }
+  .input-dark {
+    @apply bg-dark-500 border border-gold-500/20 text-gray-100 rounded-xl px-4 py-2.5
+           focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/30
+           placeholder-gray-500 transition-all duration-200 w-full;
+  }
+  .lyrics-text {
+    @apply font-amharic text-lg leading-loose text-gray-200 whitespace-pre-line;
+  }
+}
