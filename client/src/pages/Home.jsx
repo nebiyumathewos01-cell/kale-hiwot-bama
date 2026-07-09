@@ -277,9 +277,29 @@ export default function Home() {
       )}
 
       {/* Footer */}
-      <footer className="py-10 px-4 text-center border-t border-gold-500/10">
-        <p className="font-amharic text-gold-500/60 text-sm mb-1">ቃለ ሕይወት ባማ ዘማሪዎች</p>
-        <p className="text-gray-600 text-xs">Kale Hiwot Bama Choir © {new Date().getFullYear()}</p>
+      <footer className="py-12 px-4 border-t border-gold-500/10">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="font-amharic text-gold-500/60 text-sm mb-1">ቃለ ሕይወት ባማ ዘማሪዎች</p>
+            <p className="text-gray-600 text-xs">Kale Hiwot Bama Choir © {new Date().getFullYear()}</p>
+          </div>
+          <div className="w-full h-px bg-gold-500/10 mb-8"/>
+          <div className="glass-card p-6 text-center">
+            <p className="text-gray-600 text-xs uppercase tracking-widest mb-3">Developed by</p>
+            <p className="font-bold text-gray-200 text-lg mb-1">Nebiyu Mathewos</p>
+            <p className="text-gold-400/70 text-sm mb-4">Software Developer</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="tel:+251973991753"
+                className="flex items-center gap-2 text-gray-400 hover:text-gold-300 transition-colors text-sm">
+                <span>📞</span> +251 973 991 753
+              </a>
+              <a href="mailto:nebiyumathewos01@gmail.com"
+                className="flex items-center gap-2 text-gray-400 hover:text-gold-300 transition-colors text-sm">
+                <span>✉️</span> nebiyumathewos01@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   )
