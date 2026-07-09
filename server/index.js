@@ -46,13 +46,14 @@ async function seedData() {
   const Song  = require('./models/Song');
   const Message = require('./models/Message');
 
-  // Seed admin
-  const adminExists = await Admin.findOne({ username: 'admin' });
-  if (!adminExists) {
-    const hashed = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'Bama1234', 10);
-    await Admin.create({ username: 'admin', password: hashed });
-    console.log('Admin user seeded — username: admin, password: Bama1234');
-  }
+  // Seed/update admin - always sync password from env
+  const hashed = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'Bama1234', 10);
+  await Admin.findOneAndUpdate(
+    { username: 'admin' },
+    { username: 'admin', password: hashed },
+    { upsert: true, new: true }
+  );
+  console.log('Admin user synced — username: admin');
 
   // Seed sample song
   const songExists = await Song.findOne({ title: 'እረኛዬ' });
