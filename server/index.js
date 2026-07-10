@@ -123,7 +123,7 @@ async function seedData() {
   const msgExists = await Message.findOne({ title: 'Welcome' });
   if (!msgExists) {
     await Message.create({
-      title: 'ወደ ቃለ ሕይወት ባማ ዘማሪዎች እንኳን ደህና መጡ!',
+      title: 'ወደ ቃለ ሕይወት ባማ Choir መዘምራን እንኳን ደህና መጡ!',
       content: 'ይህ ድህረ ገጽ የቤተክርስቲያናችን የመዝሙር ቃላቶችን ለማጋራት የተዘጋጀ ነው። ሁሉም መዝሙሮችን ያስሱ እና ክርስቶስን ያሞካሹ!',
       type: 'Announcement',
       isActive: true

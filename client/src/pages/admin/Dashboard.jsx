@@ -32,7 +32,7 @@ export default function Dashboard() {
           <h1 className="font-bold text-3xl text-gray-100">
             {username} <span className="text-gold-400">⚡</span>
           </h1>
-          <p className="font-amharic text-gray-500 mt-1">የቃለ ሕይወት ባማ ዘማሪዎች - Admin Panel</p>
+          <p className="font-amharic text-gray-500 mt-1">የቃለ ሕይወት ባማ Choir መዘምራን - Admin Panel</p>
         </div>
 
         {/* Stats */}
