@@ -4,11 +4,13 @@ import Home from './pages/Home'
 import Songs from './pages/Songs'
 import SongDetail from './pages/SongDetail'
 import Messages from './pages/Messages'
+import About from './pages/About'
 import Login from './pages/admin/Login'
 import Dashboard from './pages/admin/Dashboard'
 import ManageSongs from './pages/admin/ManageSongs'
 import ManageMessages from './pages/admin/ManageMessages'
 import ManageMedia from './pages/admin/ManageMedia'
+import ManageAbout from './pages/admin/ManageAbout'
 import ProtectedRoute from './components/ProtectedRoute'
 
 export default function App() {
@@ -21,15 +23,17 @@ export default function App() {
         <Route path="/songs"     element={<Songs />} />
         <Route path="/songs/:id" element={<SongDetail />} />
         <Route path="/messages"  element={<Messages />} />
+        <Route path="/about"     element={<About />} />
 
         {/* Admin Auth */}
         <Route path="/admin/login" element={<Login />} />
 
         {/* Admin Protected */}
-        <Route path="/admin" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/admin"          element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/admin/songs"    element={<ProtectedRoute><ManageSongs /></ProtectedRoute>} />
         <Route path="/admin/messages" element={<ProtectedRoute><ManageMessages /></ProtectedRoute>} />
         <Route path="/admin/media"    element={<ProtectedRoute><ManageMedia /></ProtectedRoute>} />
+        <Route path="/admin/about"    element={<ProtectedRoute><ManageAbout /></ProtectedRoute>} />
       </Routes>
     </div>
   )

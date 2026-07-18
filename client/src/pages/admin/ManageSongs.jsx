@@ -13,6 +13,7 @@ export default function ManageSongs() {
   const [saving, setSaving]     = useState(false)
   const [error, setError]       = useState('')
   const [deleteId, setDeleteId] = useState(null)
+  const [deleteError, setDeleteError] = useState('')
 
   const fetchSongs = async () => {
     setLoading(true)
@@ -43,8 +44,14 @@ export default function ManageSongs() {
   }
 
   const handleDelete = async (id) => {
-    try { await api.delete(`/songs/${id}`); fetchSongs() } catch {}
-    setDeleteId(null)
+    setDeleteError('')
+    try {
+      await api.delete(`/songs/${id}`)
+      setDeleteId(null)
+      fetchSongs()
+    } catch (err) {
+      setDeleteError(err.response?.data?.message || 'Delete failed. Please try again.')
+    }
   }
 
   const field = (key, val) => setForm(f => ({ ...f, [key]: val }))
@@ -199,19 +206,23 @@ export default function ManageSongs() {
         </div>
       )}
 
-      {/* Delete Confirm */}
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-dark-900/80 backdrop-blur-sm px-4">
           <div className="glass-card p-8 max-w-sm w-full text-center">
             <p className="text-4xl mb-4">⚠️</p>
             <h3 className="font-amharic font-bold text-lg text-gray-100 mb-2">መዝሙር ሰርዝ?</h3>
             <p className="text-gray-500 text-sm mb-6">This action cannot be undone.</p>
+            {deleteError && (
+              <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm px-4 py-3 rounded-xl mb-4">
+                {deleteError}
+              </div>
+            )}
             <div className="flex gap-3">
               <button onClick={() => handleDelete(deleteId)}
                 className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-semibold transition-colors">
                 Delete
               </button>
-              <button onClick={() => setDeleteId(null)}
+              <button onClick={() => { setDeleteId(null); setDeleteError('') }}
                 className="flex-1 py-2.5 rounded-xl btn-outline-gold">
                 Cancel
               </button>

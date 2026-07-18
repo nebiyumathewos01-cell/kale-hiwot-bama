@@ -5,21 +5,21 @@ import api from '../../api/axios'
 
 export default function Dashboard() {
   const { username } = useAuth()
-  const [stats, setStats] = useState({ songs: 0, messages: 0, media: 0 })
+  const [stats, setStats] = useState({ songs: 0, messages: 0 })
 
   useEffect(() => {
     Promise.all([
       api.get('/songs'),
       api.get('/messages/all'),
-      api.get('/media/all')
-    ]).then(([s, m, med]) => setStats({ songs: s.data.length, messages: m.data.length, media: med.data.length }))
+    ]).then(([s, m]) => setStats({ songs: s.data.length, messages: m.data.length }))
       .catch(() => {})
   }, [])
 
   const cards = [
-    { icon: '🎵', label: 'Total Songs',    labelAm: 'ጠቅላላ መዝሙሮች', value: stats.songs,    link: '/admin/songs',    action: 'Manage Songs',    actionAm: 'መዝሙሮችን አስተዳድር' },
-    { icon: '📢', label: 'Total Messages', labelAm: 'ጠቅላላ መልዕክቶች', value: stats.messages, link: '/admin/messages', action: 'Manage Messages', actionAm: 'መልዕክቶችን አስተዳድር' },
-    { icon: '🖼', label: 'Media Items',    labelAm: 'ፎቶ እና ቪዲዮ',    value: stats.media,    link: '/admin/media',    action: 'Manage Media',    actionAm: 'ሚዲያ አስተዳድር' },
+    { icon: '🎵', label: 'Total Songs',    labelAm: 'ጠቅላላ መዝሙሮች', value: stats.songs,    link: '/admin/songs',    actionAm: 'መዝሙሮችን አስተዳድር' },
+    { icon: '📢', label: 'Total Messages', labelAm: 'ጠቅላላ መልዕክቶች', value: stats.messages, link: '/admin/messages', actionAm: 'መልዕክቶችን አስተዳድር' },
+    { icon: '🖼', label: 'Media Items',    labelAm: 'ፎቶ እና ቪዲዮ',    value: stats.media,    link: '/admin/media',    actionAm: 'ሚዲያ አስተዳድር' },
+    { icon: '🏛', label: 'About Us',       labelAm: 'ስለ እኛ',          value: '✏',            link: '/admin/about',    actionAm: 'ስለ እኛ አስተዳድር' },
   ]
 
   return (
@@ -36,7 +36,7 @@ export default function Dashboard() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
           {cards.map(c => (
             <div key={c.label} className="glass-card p-8 hover:border-gold-500/40 transition-all duration-300">
               <div className="flex items-center justify-between mb-6">
@@ -57,12 +57,12 @@ export default function Dashboard() {
           <h2 className="font-amharic font-semibold text-gray-300 mb-4">ፈጣን ማስፈጸሚያ</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {[
-              { to: '/admin/songs',    icon: '➕', label: 'Add Song',    am: 'መዝሙር ጨምር' },
-              { to: '/admin/messages', icon: '📝', label: 'Add Message', am: 'መልዕክት ጨምር' },
-              { to: '/admin/media',    icon: '📷', label: 'Add Media',   am: 'ሚዲያ ጨምር' },
-              { to: '/songs',          icon: '👁',  label: 'View Songs',  am: 'መዝሙሮችን ይዩ' },
-              { to: '/',               icon: '🏠',  label: 'Home',        am: 'መነሻ' },
-              { to: '/admin/media',    icon: '🖼',  label: 'Gallery',     am: 'ጋለሪ' },
+              { to: '/admin/songs',    icon: '➕', am: 'መዝሙር ጨምር' },
+              { to: '/admin/messages', icon: '📝', am: 'መልዕክት ጨምር' },
+              { to: '/admin/media',    icon: '📷', am: 'ሚዲያ ጨምር' },
+              { to: '/admin/about',    icon: '🏛', am: 'ስለ እኛ ይቀይሩ' },
+              { to: '/songs',          icon: '👁', am: 'መዝሙሮችን ይዩ' },
+              { to: '/',               icon: '🏠', am: 'መነሻ' },
             ].map(l => (
               <Link key={l.to} to={l.to}
                 className="flex flex-col items-center gap-2 p-4 rounded-xl bg-dark-500 hover:bg-dark-400 border border-dark-400 hover:border-gold-500/30 transition-all duration-200 text-center">

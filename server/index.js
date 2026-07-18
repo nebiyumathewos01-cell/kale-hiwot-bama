@@ -20,6 +20,7 @@ app.use('/api/auth',     require('./routes/auth'));
 app.use('/api/songs',    require('./routes/songs'));
 app.use('/api/messages', require('./routes/messages'));
 app.use('/api/media',    require('./routes/media'));
+app.use('/api/about',    require('./routes/about'));
 
 app.get('/', (req, res) => res.json({ message: 'Kale Hiwot Bama Choir API running.' }));
 
